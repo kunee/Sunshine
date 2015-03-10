@@ -35,6 +35,8 @@ import java.util.List;
  */
 public class ForecastFragment extends Fragment {
 
+    private ArrayAdapter<String> forecastAdapter;
+
     public ForecastFragment() {
     }
 
@@ -77,7 +79,7 @@ public class ForecastFragment extends Fragment {
 
         List<String> weekForecast = new ArrayList<String>(Arrays.asList(forecastArray));
 
-        ArrayAdapter arrayAdapter = new ArrayAdapter<String>(
+        forecastAdapter = new ArrayAdapter<String>(
                 // context
                 getActivity(),
                 // layout resource
@@ -88,7 +90,7 @@ public class ForecastFragment extends Fragment {
                 weekForecast);
 
         ListView listView = (ListView) rootView.findViewById(R.id.listview_forecast);
-        listView.setAdapter(arrayAdapter);
+        listView.setAdapter(forecastAdapter);
 
         return rootView;
     }
@@ -287,6 +289,17 @@ public class ForecastFragment extends Fragment {
                 Log.v(LOG_TAG, "Forecast entry: " + s);
             }
             return resultStrs;
+        }
+
+        @Override
+        protected void onPostExecute(String[] result) {
+            if (result != null) {
+                forecastAdapter.clear();
+                for (String dayForecast : result) {
+                    forecastAdapter.add(dayForecast);
+                    // addAll() for Honeycomb and above...
+                }
+            }
         }
     }
 }
