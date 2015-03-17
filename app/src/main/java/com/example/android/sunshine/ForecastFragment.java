@@ -327,7 +327,9 @@ public class ForecastFragment extends Fragment {
             if (result != null) {
                 forecastAdapter.clear();
                 for (String dayForecast : result) {
-                    forecastAdapter.add(dayForecast);
+                    if (dayForecast != null) {
+                        forecastAdapter.add(dayForecast);
+                    }
                     // addAll() for Honeycomb and above...
                 }
             }
