@@ -69,6 +69,7 @@ public class DetailFragment extends Fragment implements LoaderManager.LoaderCall
     private TextView humidityView;
     private TextView windView;
     private TextView pressureView;
+    private DirectionView windDirectionView;
 
     private ShareActionProvider shareActionProvider;
     private String forecast;
@@ -97,6 +98,7 @@ public class DetailFragment extends Fragment implements LoaderManager.LoaderCall
         humidityView = (TextView) rootView.findViewById(R.id.detail_humidity_textview);
         windView = (TextView) rootView.findViewById(R.id.detail_wind_textview);
         pressureView = (TextView) rootView.findViewById(R.id.detail_pressure_textview);
+        windDirectionView = (DirectionView) rootView.findViewById(R.id.detail_wind_direction);
         return rootView;
     }
 
@@ -202,6 +204,9 @@ public class DetailFragment extends Fragment implements LoaderManager.LoaderCall
         double degrees = data.getDouble(COL_WEATHER_DEGREES);
         String wind = Utility.getFormattedWind(getActivity(), windSpeed, degrees);
         windView.setText(wind);
+        if (windDirectionView != null) {
+            windDirectionView.setDirection(degrees);
+        }
 
         String pressure = Utility.formatPressure(getActivity(),
                 data.getDouble(COL_WEATHER_PRESSURE));
