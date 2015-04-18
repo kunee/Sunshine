@@ -222,6 +222,11 @@ public class FetchWeatherTask {
                 inserted = mContext.getContentResolver().bulkInsert(WeatherEntry.CONTENT_URI, cvArray);
             }
 
+            // delete old data so we don't build up an endless history
+            mContext.getContentResolver().delete(WeatherContract.WeatherEntry.CONTENT_URI,
+                    WeatherContract.WeatherEntry.COLUMN_DATE + " <= ?",
+                    new String[]{Long.toString(dayTime.setJulianDay(julianStartDay - 1))});
+
             Log.d(LOG_TAG, "FetchWeatherTask Complete. " + inserted + " Inserted");
 
         } catch (JSONException e) {
