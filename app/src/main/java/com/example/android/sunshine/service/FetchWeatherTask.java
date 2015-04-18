@@ -1,4 +1,4 @@
-package com.example.android.sunshine;
+package com.example.android.sunshine.service;
 
 import android.content.ContentUris;
 import android.content.ContentValues;

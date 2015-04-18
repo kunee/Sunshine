@@ -1,4 +1,4 @@
-package com.example.android.sunshine;
+package com.example.android.sunshine.service;
 
 import android.annotation.TargetApi;
 import android.database.Cursor;
