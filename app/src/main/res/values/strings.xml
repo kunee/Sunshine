@@ -50,6 +50,12 @@
     <!-- Value in SharedPreferences for imperial temperature unit option [CHAR LIMIT=NONE] -->
     <string name="pref_units_imperial" translatable="false">imperial</string>
 
+    <!-- Label for the location preference [CHAR LIMIT=30] -->
+    <string name="pref_notification_label">Enable Notifications</string>
+
+    <!-- Key name for storing location in SharedPreferences [CHAR LIMIT=NONE] -->
+    <string name="pref_notification_key" translatable="false">notification</string>
+
 
     <!-- Language-specific constants -->
     <string name="today">Today</string>

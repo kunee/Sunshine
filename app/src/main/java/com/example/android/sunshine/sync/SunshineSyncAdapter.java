@@ -165,6 +165,10 @@ public class SunshineSyncAdapter extends AbstractThreadedSyncAdapter {
         //checking the last update and notify if it's the first of the day
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         String lastNotificationKey = context.getString(R.string.pref_last_notification);
+        boolean enableNotifications = prefs.getBoolean(context.getString(R.string.pref_notification_key), true);
+        if (!enableNotifications) {
+            return;
+        }
         long lastSync = prefs.getLong(lastNotificationKey, 0);
 
         if (System.currentTimeMillis() - lastSync >= DAY_IN_MILLIS) {
